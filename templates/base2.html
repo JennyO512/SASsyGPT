@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SASGPT</title>
+        <link rel="shortcut icon" type="image" href="./static/LOGO.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="./static/main.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+
+        <style>
+            body {
+                background-color: rgb(223, 222, 222);
+            }
+            footer {
+                background-color: lightgray;
+                text-align: left;
+                padding: 13px;
+                color: purple;
+
+            }
+            h1 {
+                color: #19161e;
+                text-align: center;
+                margin-top: 50px;
+                padding: 20px;
+            }
+            h2 {
+                color: #19161e;
+                text-align: center;
+                margin-top: 50px;
+                padding: 20px;
+            }
+            
+            form {
+                background-color: rgb(244, 244, 244);
+                padding: 50px;
+                border-radius: 20px;
+                box-shadow: 5px 5px 10px #BFBFBF;
+                margin: 0 auto;
+                width: 500px;
+            }
+            label {
+                color: #19161e;
+                font-size: 20px;
+                display: block;
+                margin-bottom: 20px;
+            }
+            input[type="text"] {
+                font-size: 18px;
+                padding: 10px;
+                border-radius: 10px;
+                border: 1px solid #BFBFBF;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            input[type="submit"] {
+                background-color: #528fc1;
+                color: white;
+                font-size: 18px;
+                padding: 10px 20px;
+                border-radius: 10px;
+                border: none;
+                width: 100%;
+                cursor: pointer;
+            }
+            p {
+                font-family: "Times New Roman";
+                font-size: 12pt;
+                line-height: 1.5;
+                margin-top: 1.5em;
+                margin-bottom: 1.5em;
+                margin-left: 1.5em;
+                margin-right: 1.5em;
+                text-align: center;
+                text-indent: 1.5em;
+                
+              }
+
+              div {
+                background-color: white;
+              }
+              h3 {
+                color: #291d3e;
+                text-align: center;
+                margin-top: 45px;
+                margin-bottom: 45px;
+            }
+            img {
+                padding: 13px;
+                opacity: 0.5;
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            .col-75 {
+                float: left;
+                width: 75%;
+                margin-top: 6px;
+              }
+
+            .col-25 {
+                float: left;
+                width: 25%;
+                margin-top: 6px;
+              }
+            @media screen and (max-width: 600px) {
+                .col-25, .col-75, input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+            }
+            .terminal-output {
+                background-color: #1e1e1e; /* Dark background, similar to a terminal */
+                color: #fff; /* Light text color for readability */
+                font-family: 'Courier New', monospace; /* Monospace font for code-like appearance */
+                padding: 10px;
+                border-radius: 4px;
+                overflow-x: auto; /* Adds a horizontal scrollbar if content is too wide */
+                white-space: pre-wrap; /* Ensures long lines wrap */
+            }
+            
+                </style>
+    </head>
+    <body>
+<!--conditional statement for displaying logged in and logged out -->
+{% if session.logged_in %}
+<a href="{{ url_for('logout') }}">Logout</a>
+{% else %}
+<a href="{{ url_for('login') }}">Login</a>
+{% endif %}
+    
+
+
+        <<br>
+        <h1>Dashboard</h1>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+        <link rel="shortcut icon" type="image" href="./static/LOGO.png">
+      <a href="#home" class="w3-bar-item w3-button"><b>SAS</b>GPT</a>
+
+
+      <!-- Float links to the right. Hide them on small screens -->
+      <div class="w3-right w3-hide-small">
+        
+        <a href="mailto:SASGPT%20Support<jennybenavides81@gmail.com>" class="w3-bar-item w3-button">Contact |</a> 
+        <a class="w3-bar-item w3-button" href="/login">Login |</a> <a class="w3-bar-item w3-button" href="/register">Register |</a>
+        <a class="w3-bar-item w3-button" href="/logout">Logout |</a>
+        <a class="w3-bar-item w3-button" href="{{ url_for('chat_history') }}">Chat History</a>
+
+      </div>
+    </div>
+  </div> 
+  </header>
+
+        <h1 style="font-size:5vw;">Welcome to SAS GPT</h1>
+  
+    <p style="color: black; font-size: 20px">SAS Quick Reference</p>
+        
+ 
+        <form action="/chat" method="POST">
+            <label for="position">What do you need help with today?</label>
+            <p> You can try something like this: </p>
+            <p style="font-style: italic;"> Write a SAS program to extract data from a partitioned dataset and include comments above each line. </p>
+            <input type="text" id="position" name="position" autocomplete="off">            
+            <input type="submit" value="Submit">
+        </form>
+        <br>
+
+
+        <form>   
+                     
+            <div class=".col-75 card" style="display: block;">
+                {% if letter %}
+                    <h3 class="mb-5">Your Question: {{ position}}</h3>
+                    <div class="card-body"> 
+                    <!--p class="letter-output card-body" style="font-size: 1.4rem; white-space: pre-wrap; text-align: left;">{{ letter }}</p-->
+                    <pre  class="terminal-output">{{ letter }}</pre>
+                    </div>
+                {% endif %} 
+            </div>        
+        </form>
+    
+        <br>
+        <div>
+        <footer class="w3-center w3-padding-48 w3-large">
+               
+            <span class="copy-rights">Jennifer Benavides Ⓒ<script>document.write( new Date().getFullYear() );</script></span>
+            <br>
+		<!--a href="./privacy.html">Privacy</a-->  
+            
+	    <a href="mailto:coverletterassist%20Support<jennybenavides81@gmail.com>" class="link-footer">Contact</a>
+
+    </footer>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+        </script>
+</div>
+    </body>
+</html>
