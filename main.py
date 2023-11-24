@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from flask import Flask, render_template, request, jsonify, url_for, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+#from flask_migrate import Migrate
 from flask_login import login_user, current_user, logout_user, login_required, LoginManager
 from datetime import datetime
 from sqlalchemy.exc import IntegrityError
@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chatbot.db'
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+#migrate = Migrate(app, db)
 
 
 
