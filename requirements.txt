@@ -27,3 +27,4 @@ urllib3==1.26.7
 Werkzeug==2.0.2
 flask_sqlalchemy
 SQLAlchemy
+flask_login
