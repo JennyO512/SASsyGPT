@@ -105,7 +105,7 @@ def create_cover_letter():
         position = request.form.get('position')
         
         if position:  # Ensure position is not empty
-            openai.api_key = "OPENAI_API_KEY"
+            openai_api_key = os.environ.get('OPENAI_API_KEY')
 
             prompt = f"Act as a full stack IBM SAS JCL Mainframe programmer. Help debug SAS programs or provide code snippets of SAS with JCL. Here is the question: {position}"
             completions = openai.Completion.create(
