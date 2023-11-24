@@ -1,0 +1,26 @@
+<!-- chat_history.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head content -->
+</head>
+<body>
+    <h1>Chat History</h1>
+    <ul>
+        {% for chat in chats.items %}
+            <li>
+                <strong>{{ chat.created_at.strftime('%Y-%m-%d %H:%M') }}</strong>: 
+                {{ chat.position }} - {{ chat.letter }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Pagination Links -->
+    {% if chats.has_prev %}
+        <a href="{{ url_for('chat_history', page=chats.prev_num) }}">Previous</a>
+    {% endif %}
+    {% if chats.has_next %}
+        <a href="{{ url_for('chat_history', page=chats.next_num) }}">Next</a>
+    {% endif %}
+</body>
+</html>
