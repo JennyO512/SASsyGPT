@@ -16,18 +16,18 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chatbot.db'
 db = SQLAlchemy(app)
-#migrate = Migrate(app, db)
-
-
 
 # Initialize Flask-Login's LoginManager
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-@login_manager.user_loader
-def load_user(user_id):
-    # Return the user object from the user ID, typically from your database
-    return User.query.get(int(user_id))
+# Connect to Database
+DB_NAME = 'chatbot.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+
 
 
 # Models
@@ -43,6 +43,15 @@ class Chat(db.Model):
     letter = db.Column(db.String(1000))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+# Create the table in the database using PostgreSQL
+with app.app_context():
+    db.create_all()
+    print("Database Created!")
+
+@login_manager.user_loader
+def load_user(user_id):
+    # Return the user object from the user ID, typically from your database
+    return User.query.get(int(user_id))
 
 
 
@@ -148,6 +157,4 @@ def chat_history():
 
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug=True, port=os.getenv("PORT", default=5000))
