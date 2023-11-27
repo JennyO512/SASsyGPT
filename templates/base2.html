@@ -141,31 +141,27 @@
     
 
 <!-- Navbar (sit on top) -->
-<div  class="w3-top">
-    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-        <link rel="shortcut icon" type="image" href="./static/LOGO.png">
-      <a href="#home" class="w3-bar-item w3-button"><b>SAS</b>GPT</a>
-
-
-      <!-- Float links to the right. Hide them on small screens -->
-
-      <div class="w3-right w3-hide-small">        
-        <a href="mailto:SASGPT%20Support<jennybenavides81@gmail.com>" class="w3-bar-item w3-button">Contact |</a> 
-        <a class="w3-bar-item w3-button" href="/login">Login |</a> 
-        <a class="w3-bar-item w3-button" href="/register">Register |</a>
-        <a class="w3-bar-item w3-button" href="/logout">Logout |</a>
-        <a class="w3-bar-item w3-button" href="{{ url_for('chat_history') }}">Chat History</a>
+<div class="w3-top">
+    <div class="w3-bar w3-white w3-card" id="myNavbar">
+      <a href="#home" class="w3-bar-item w3-button w3-wide"><b>SAS</b>GPT</a>
+      <!-- Right-sided navbar links -->
+      <div class="w3-right w3-hide-small">
+        <a href="/register" class="w3-bar-item w3-button">REGISTER</a>
+        <a href="/login" class="w3-bar-item w3-button"><i class="fa fa-user"></i> LOGIN</a>
+        <a href="/logout" class="w3-bar-item w3-button"><i class="fa fa-th"></i> LOGOUT</a>
+        <a href="{{ url_for('chat_history') }}" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> CHAT HISTORY</a>
+        <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
       </div>
- <!-- Hide right-floated links on small screens and replace them with a menu icon -->
-
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+  
+      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
         <i class="fa fa-bars"></i>
       </a>
-      </div>
     </div>
-
-<!-- Sidebar on small screens when clicking the menu icon -->
-<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  </div>
+  
+  <!-- Sidebar on small screens when clicking the menu icon -->
+  <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
     <a href="/register" onclick="w3_close()" class="w3-bar-item w3-button">REGISTER</a>
     <a href="/login" onclick="w3_close()" class="w3-bar-item w3-button">LOGIN</a>
@@ -173,12 +169,9 @@
     <a href="/chat/history" onclick="w3_close()" class="w3-bar-item w3-button">CHAT HISTORY</a>
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
   </nav>
- 
+    
 
-	    
-  </header>
-
-        <h1 style="font-size:5vw;">Welcome to SAS GPT</h1>
+  <h1 style="font-size:5vw;">Welcome to SAS GPT</h1>
   
     <p style="color: black; font-size: 20px">SAS Quick Reference</p>
         
@@ -191,10 +184,7 @@
             <input type="submit" value="Submit">
         </form>
         <br>
-
-
-        <form>   
-                     
+        <form>                        
             <div class=".col-75 card" style="display: block;">
                 {% if letter %}
                     <h3 class="mb-5">Your Question: {{ position}}</h3>
@@ -208,43 +198,16 @@
     
         <br>
         <div>
-        <footer class="w3-center w3-padding-48 w3-large">
-               
+        <footer class="w3-center w3-padding-48 w3-large">               
             <span class="copy-rights">Jennifer Benavides Ⓒ<script>document.write( new Date().getFullYear() );</script></span>
             <br>
-		<!--a href="./privacy.html">Privacy</a-->  
+	<!--a href="./privacy.html">Privacy</a-->  
             
-	    <a href="mailto:coverletterassist%20Support<jennybenavides81@gmail.com>" class="link-footer">Contact</a>
-
+	<a href="mailto:coverletterassist%20Support<jennybenavides81@gmail.com>" class="link-footer">Contact</a>
     </footer>
-    <script>
-text" id="position" name="position" autocomplete="off">            
-            <input type="submit" value="Submit">
-        </form>
-        <br>
-        <form>             
-            <div class=".col-75 card" style="display: block;">
-                {% if letter %}
-                    <h3 class="mb-5">Your Question: {{ position}}</h3>
-                    <div class="card-body"> 
-                    <!--p class="letter-output card-body" style="font-size: 1.4rem; white-space: pre-wrap; text-align: left;">{{ letter }}</p-->
-                    <pre  class="terminal-output">{{ letter }}</pre>
-                    </div>
-                {% endif %} 
-            </div>        
-        </form>
-    
-        <br>
-        <div>
-        <footer class="w3-center w3-padding-48 w3-large">
-               
-            <span class="copy-rights">Jennifer Benavides Ⓒ<script>document.write( new Date().getFullYear() );</script></span>
-            <br>
-		<!--a href="./privacy.html">Privacy</a-->   
-	    <a href="mailto:coverletterassist%20Support<jennybenavides81@gmail.com>" class="link-footer">Contact</a>
- </footer>
 		
-    <script>      
+   		
+    <script>       
 // Toggle between showing and hiding the sidebar when clicking the menu icon
 var mySidebar = document.getElementById("mySidebar");
 
@@ -255,12 +218,12 @@ function w3_open() {
     mySidebar.style.display = 'block';
   }
 }
-
 // Close the sidebar with the close button
 function w3_close() {
     mySidebar.style.display = "none";
 }
-        </script>
+    </script>
+		
 </div>
     </body>
 </html>
