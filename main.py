@@ -138,11 +138,7 @@ def create_cover_letter():
 
     return render_template('base2.html')
 
-    
-        
-        
-    # Handling for GET request
-    return render_template('base2.html')
+
 
 # Example of fetching chat with pagination
 @app.route('/chat/history')
