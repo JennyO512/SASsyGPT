@@ -75,7 +75,7 @@ For support or queries, please contact us at `your-email@example.com`.
 
 # Python Flask Example
 
-This is a [Flask](https://flask.palletsprojects.com/en/1.1.x/) app that serves a simple JSON response.
+This WAS a simple [Flask](https://flask.palletsprojects.com/en/1.1.x/) app that serves a simple JSON response. I have cloned it and edited it for my needs. You can make your own by cloning this template for your needs.
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/zUcpux)
 
