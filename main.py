@@ -17,6 +17,19 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chatbot.db'
 db = SQLAlchemy(app)
 
+
+
+###############################################################################
+########################### X-Frame-Options for Vulnerabilities ###############
+###############################################################################
+@app.after_request
+def apply_x_frame_options(response):
+    response.headers["X-Frame-Options"] = "SAMEORIGIN"
+    return response
+
+
+
+
 # Initialize Flask-Login's LoginManager
 login_manager = LoginManager()
 login_manager.init_app(app)
